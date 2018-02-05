@@ -34,3 +34,10 @@
     (is (false? (s/valid? :defns.core/signature [Fn])))
     (is (false? (s/valid? :defns.core/signature [Fn []])))
     (is (false? (s/valid? :defns.core/signature [Fn [Int]])))))
+
+(deftest prettiffy-signature-test
+  (testing "prettifying"
+    (is (= (prettify-sig [Fn [Int Int] Int])
+           ["Fn" ["Int" "Int"] "Int"]))
+    (is (= (prettify-sig [Fn [] Int])
+           ["Fn" [] "Int"]))))

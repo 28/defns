@@ -40,7 +40,7 @@
 (defn signature-valid?
   [signature]
   (if-not (s/valid? ::signature signature)
-    (throw (new Exception ""))
+    (throw (new Exception (str (s/explain-data ::signature signature))))
     true))
 
 (defmacro defns

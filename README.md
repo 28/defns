@@ -1,10 +1,40 @@
-# fn-sig
+# defns
 
-A Clojure library designed to ... well, that part is up to you.
+A library that provides an interface for defining functions
+with type signatures for which pre and post conditions are
+generated using spec.
 
 ## Usage
 
-FIXME
+``` clojure
+user> (require '[defns.core :as defns])
+nil
+
+user> (defns/defns test-fn
+        [defns/Fn [defns/Int defns/Int] defns/Int]
+        [a b]
+        (+ a b))
+#'user/test-fn
+
+user> (test-fn 1 2)
+3
+
+user> (test-fn "1" "2")
+user> ;; a currently ugly assertion error
+
+user> ;; override test-fn to return nil instead od Int
+user> (defns/defns test-fn
+        [defns/Fn [defns/Int defns/Int] defns/Int]
+        [a b]
+        nil)
+#'user/test-fn
+
+user> (test-fn 1 2)
+user> ;; another currently ugly assertion error
+
+user> (:pretty-signature (meta #'test-fn))
+["Fn" ["Int" "Int"] "Int"]
+```
 
 ## License
 
