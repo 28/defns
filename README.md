@@ -8,32 +8,59 @@ generated using spec.
 
 ``` clojure
 user> (require '[defns.core :as defns])
-nil
+=> nil
 
 user> (defns/defns test-fn
         [defns/Fn [defns/Int defns/Int] defns/Int]
         [a b]
         (+ a b))
-#'user/test-fn
+=> #'user/test-fn
 
 user> (test-fn 1 2)
-3
+=> 3
 
 user> (test-fn "1" "2")
-user> ;; a currently ugly assertion error
+=>  ;; a currently ugly assertion error
 
 user> ;; override test-fn to return nil instead od Int
 user> (defns/defns test-fn
         [defns/Fn [defns/Int defns/Int] defns/Int]
         [a b]
         nil)
-#'user/test-fn
+=> #'user/test-fn
 
 user> (test-fn 1 2)
-user> ;; another currently ugly assertion error
+=>  ;; another currently ugly assertion error
 
 user> (:pretty-signature (meta #'test-fn))
-["Fn" ["Int" "Int"] "Int"]
+=> ["Fn" ["Int" "Int"] "Int"]
+```
+
+You can define your own types:
+```clojure
+user> (require '[clojure.spec.alpha :as s])
+=> nil
+
+user> (s/def ::first-name string?)
+=> :user/first-name
+
+user> (s/def ::last-name string?)
+=> :user/last-name
+
+user> (defns/defs Person (partial s/valid? (s/keys :req [::first-name ::last-name])))
+=> #'user/Person
+
+user> (defns/defns update-first-name
+    [defns/Fn [Person defns/Str] Person]
+    [p name]
+  (assoc-in p [::first-name] name))
+=> #'user/update-first-name
+
+user> (update-first-name {::first-name "John" ::last-name "Doe"} "Jane")
+=> #:user{:first-name "Jane", :last-name "Doe"}
+
+user> (update-first-name {:a 1} "Jane")
+=> ;; ;; another currently ugly assertion error
 ```
 
 ## License
