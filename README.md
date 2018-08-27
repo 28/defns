@@ -22,7 +22,7 @@ user> (test-fn 1 2)
 user> (test-fn "1" "2")
 =>  ;; a currently ugly assertion error
 
-user> ;; override test-fn to return nil instead od Int
+user> ;; override test-fn to return nil instead of Int
 user> (defns/defns test-fn
         [defns/Fn [defns/Int defns/Int] defns/Int]
         [a b]
