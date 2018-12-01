@@ -17,6 +17,7 @@
 (defs Int int?)
 (defs Bool boolean?)
 (defs Nil nil?)
+(defs Key keyword?)
 
 (defs GenericType (comp not nil?)) ; TODO - Find a better solution
 (def T GenericType)
