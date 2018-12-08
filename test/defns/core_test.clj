@@ -58,7 +58,7 @@
     (is (s/valid? :defns.core/parameters [Key]))
     (is (s/valid? :defns.core/parameters [Int Int]))
     (is (s/valid? :defns.core/parameters [Int Str]))
-    (is (false? (s/valid? :defns.core/parameters [Fn Fn]))))
+    (is (s/valid? :defns.core/parameters [Fn Fn])))
   (testing "Function signature spec will conform on valid signatures."
     (is (s/valid? :defns.core/signature [Fn [Int] Int]))
     (is (s/valid? :defns.core/signature [Fn [Int] Bool]))

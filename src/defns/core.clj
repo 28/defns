@@ -26,7 +26,7 @@
 
 ;; Specs
 
-(s/def ::type #(and (instance? TypeSpecification %) (not= Fn %)))
+(s/def ::type #(instance? TypeSpecification %))
 (s/def ::fn #(= Fn %))
 (s/def ::parameters (s/coll-of ::type))
 (s/def ::signature (s/tuple ::fn ::parameters ::type))
