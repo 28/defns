@@ -44,7 +44,7 @@ user> (s/def ::first-name string?)
 user> (s/def ::last-name string?)
 => :user/last-name
 
-user> (d/defs Person (partial s/valid? (s/keys :req [::first-name ::last-name])))
+user> (d/deft Person (partial s/valid? (s/keys :req [::first-name ::last-name])))
 => #'user/Person
 
 user> (d/defns update-first-name

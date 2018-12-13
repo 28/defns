@@ -28,7 +28,7 @@
 
 (s/def ::last-name string?)
 
-(defs Person (partial s/valid? (s/keys :req [::first-name ::last-name])))
+(deft Person (partial s/valid? (s/keys :req [::first-name ::last-name])))
 
 (defns update-name
   [Fn [Person Str] Person]
