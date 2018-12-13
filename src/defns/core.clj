@@ -4,13 +4,12 @@
 
 ;; Signature type definitions
 
-(defrecord TypeSpecification
-    [predicate type-name])
+(defrecord TypeSpecification [type-name predicate])
 
 (defmacro defs
   [type-name predicate]
   `(def ~type-name
-     (->TypeSpecification ~predicate ~(name type-name))))
+     (->TypeSpecification ~(name type-name) ~predicate)))
 
 (defs Fn fn?)
 (defs Str string?)
