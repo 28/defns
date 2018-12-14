@@ -4,6 +4,8 @@ A library that provides a way for defining functions with type
 signatures for which pre and post conditions are generated using spec.
 This is an experimental idea.
 
+The thought process is explained [here](http://theparanoidtimes.org/blog/2018/12/14/defns/).
+
 ## Usage
 
 ``` clojure
